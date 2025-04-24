@@ -204,3 +204,6 @@ if /i "%command%"=="Who am i logged in as in this interface?" (
 
 echo [ERROR 145]: Unrecognized Order or Question. Please try again.
 goto loop
+
+echo [ERROR 145]: Unrecognized Order or Question. Please try again.
+goto loop
