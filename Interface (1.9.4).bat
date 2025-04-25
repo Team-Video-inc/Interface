@@ -1,8 +1,6 @@
 @echo off
+title TEAM VIDEO INTERFACE - 1.9.4
 color 0A
-title Team Video Interface - 1.9.4 BETA
-
-:: Smooth Loading Screen
 cls
 echo Initializing The Interface...
 ping localhost -n 4 >nul
@@ -18,6 +16,8 @@ echo Finalizing startup...
 ping localhost -n 10 >nul
 cls
 
+timeout /t 2 >nul
+cls
 color CF
 echo.
 echo ==========================================================
@@ -25,8 +25,9 @@ echo    NOTE: CHECK DAILY UPDATES ON OUR APP BELOW
 echo    https://sites.google.com/view/team-video/whats-new?  
 echo ==========================================================
 echo.
+echo YOUR VERSION: 1.9.4
 echo PLEASE NOTE:
-echo You need to keep the interface up to date. To update:
+echo Remember to keep the interface up to date. To update:
 echo - Delete this version
 echo - Download the latest version from the site
 echo - Follow the steps from the Google Docs link used to install
@@ -34,7 +35,6 @@ echo.
 echo Press ENTER KEY to start the terminal...
 pause >nul
 color 0A
-
 :: Fancy Text Header
 echo ==================================================
 echo         [ TEAM VIDEO INTERFACE - 1.9.4 BETA INPROVED ]
@@ -151,7 +151,7 @@ if /i "%command%"=="What is the time?" (
 )
 
 if /i "%command%"=="Why is this on my device?" (
-    echo This is on your device for a reason. Check the file on your desktop screen labeled: Team Video Files
+    echo This is on your device for a reason. Check the file on your desktop screen labeled: "Team Video Files" in case it isn't there.then you must have downloaded it yourself and forgot.
     timeout /t 2 >nul
     goto loop
 )
@@ -201,9 +201,6 @@ if /i "%command%"=="Who am i logged in as in this interface?" (
     timeout /t 3 >nul
     goto loop
 )
-
-echo [ERROR 145]: Unrecognized Order or Question. Please try again.
-goto loop
 
 echo [ERROR 145]: Unrecognized Order or Question. Please try again.
 goto loop
