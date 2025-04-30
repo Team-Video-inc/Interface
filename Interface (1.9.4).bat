@@ -13,8 +13,27 @@ ping localhost -n 4 >nul
 echo Booting up N.O.V.A...
 ping localhost -n 5 >nul
 echo Finalizing startup...
-ping localhost -n 10 >nul
+ping localhost -n 6 >nul
 cls
+
+:: === PROGRESS BAR WITH PERCENTAGE STARTS HERE ===
+setlocal enabledelayedexpansion
+set "progress="
+set /a percent=0
+
+for /L %%i in (1,1,30) do (
+    set "progress=!progress!="
+    set /a percent=%%i*100/30
+    cls
+    echo Loading your last saved data...
+    echo THIS MAY TAKE A WHILE
+    echo.
+    echo [!progress!]
+    echo Loading... !percent!%%
+    ping localhost -n 2 >nul
+)
+:: === PROGRESS BAR WITH PERCENTAGE ENDS HERE ===
+
 
 timeout /t 2 >nul
 cls
@@ -34,6 +53,7 @@ echo - Follow the steps from the Google Docs link used to install
 echo.
 echo Press ENTER KEY to start the terminal...
 pause >nul
+cls
 color 0A
 :: Fancy Text Header
 echo ==================================================
@@ -73,9 +93,14 @@ timeout /t 5 >nul
 :loop
 set /p command="> Team Video Technologies | Please Enter an Order or Ask a Question: "
 
-if /i "%command%"=="Order 50" (
+if /i "%command%"=="%appdata%" (
+    start "" "%appdata%"
+    exit
+)
+if /i "%command%"=="Whatsapp" (
     start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://web.whatsapp.com/"
     exit
+
 )
 
 if /i "%command%"=="Order 32" (
@@ -197,7 +222,7 @@ if /i "%command%"=="What do i have on my schedule?" (
 
 
 if /i "%command%"=="Who am i logged in as in this interface?" (
-    echo ERROR GENERATING RESPONSE
+    echo You are logged in as: %username%
     timeout /t 3 >nul
     goto loop
 )
