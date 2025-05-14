@@ -11,21 +11,21 @@ ping localhost -n 3 >nul
 echo Loading Interface...
 ping localhost -n 4 >nul
 echo Booting up N.O.V.A...
-ping localhost -n 5 >nul
-echo Finalizing startup...
+ping localhost -n 3 >nul
+echo Enabling Interface System...
 ping localhost -n 6 >nul
 cls
 
 :: === PROGRESS BAR WITH PERCENTAGE STARTS HERE ===
 setlocal enabledelayedexpansion
 set "progress="
-set /a percent=0
+set /a percent=1
 
 for /L %%i in (1,1,30) do (
     set "progress=!progress!="
     set /a percent=%%i*100/30
     cls
-    echo Loading your last saved data...
+    echo Loading System Database.
     echo THIS MAY TAKE A WHILE
     echo.
     echo [!progress!]
@@ -33,7 +33,6 @@ for /L %%i in (1,1,30) do (
     ping localhost -n 2 >nul
 )
 :: === PROGRESS BAR WITH PERCENTAGE ENDS HERE ===
-
 
 timeout /t 2 >nul
 cls
@@ -55,11 +54,16 @@ echo Press ENTER KEY to start the terminal...
 pause >nul
 cls
 color 0A
+echo Finalizing startup...
+ping localhost -n 6 >nul
+cls
+cls
+color 0A
 :: Fancy Text Header
-echo ==================================================
+echo =========================================================
 echo         [ TEAM VIDEO INTERFACE - 1.9.4 BETA INPROVED ]
 echo        NOVA ENTERPRISES ^| Team Video Technologies  
-echo ==================================================
+echo =========================================================
 color 06
 echo.
 echo Welcome! You can execute the following orders or talk with our AI N.O.V.A.:
@@ -100,7 +104,6 @@ if /i "%command%"=="%appdata%" (
 if /i "%command%"=="Whatsapp" (
     start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://web.whatsapp.com/"
     exit
-
 )
 
 if /i "%command%"=="Order 32" (
@@ -116,7 +119,6 @@ if /i "%command%"=="Order 87" (
 if /i "%command%"=="Order 66" (
     echo This was disabled since the Interface's Creation. due to a massive glicth causing the device to crash mutiplte times the next log in after this order's use.
 )
-
 
 if /i "%command%"=="Order 99" (
     start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://www.roblox.com/home"
@@ -170,7 +172,7 @@ if /i "%command%"=="What is the weather?" (
 )
 
 if /i "%command%"=="What is the time?" (
-    echo The current time is %time%.
+    echo The current time is %time%..
     timeout /t 2 >nul
     goto loop
 )
@@ -195,11 +197,10 @@ if /i "%command%"=="What can I do here?" (
 
 if /i "%command%"=="Im bored.got ideas?" (
     echo You can play Roblox, Minecraft, or just watch anime.
-    echo If you're into anime though, I recommend "Alya Sometimes Hides Her Feelings in Russian". ratings show its a nice series to watch.
+    echo If you're into anime though, I recommend "Alya Sometimes Hides Her Feelings in Russian". ratings show its a nice series to watch.In case you did though,Season 2 is in the works and is worth the wait according to the fan's.
     timeout /t 3 >nul
     goto loop
 )
-
 
 if /i "%command%"=="What is my location?" (
     echo I cant tell or know your location due to security reasons.
@@ -209,23 +210,17 @@ if /i "%command%"=="What is my location?" (
 )
 
 if /i "%command%"=="What do i have on my schedule?" (
-    echo You Currently have the following on your schedule:
-    echo =======================================================
-    echo Friday 1:30PM till 4:30PM - Twitch Stream
-    echo Thursday - Post a Youtube Video
-    echo Monday and Tuesday - Post both a Tiktok and Youtube Video
-    echo =======================================================
-    echo There is no other thing's in your schedule that i know of.
+    echo I Don't have access to that.
     timeout /t 3 >nul
     goto loop
 )
-
 
 if /i "%command%"=="Who am i logged in as in this interface?" (
     echo You are logged in as: %username%
     timeout /t 3 >nul
     goto loop
 )
+
 
 echo [ERROR 145]: Unrecognized Order or Question. Please try again.
 goto loop
