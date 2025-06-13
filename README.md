@@ -4,8 +4,12 @@ Created By:
 
 ⚠️ NOTE:
 IT IS RECOMMENDEND TO READ THE TERMS AND CONDITION'S BEFORE DOWNLOADING THIS FILE.
-
 THIS IS YOUR OWN CHOICE.BUT REMEMBER,BREAKING THE T&C WITHOUT REALIZING WILL MAKE YOU FACE CONSEQUENCES FOR YOUR ACTIONS
+
+# Updates:
+Updates has been relocated to the Team Video Website.Vist it here:
+https://sites.google.com/view/team-video/our-products
+
 # INSTALLATION INSTRUCTIONS
 Follow the steps below carefully to ensure proper setup of the interface batch file.
 
