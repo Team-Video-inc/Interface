@@ -2,15 +2,101 @@
 title TEAM VIDEO INTERFACE - 1.9.4
 color 0A
 cls
+
+:: === LOGIN SYSTEM STARTS HERE ===
+:login_start
+cls
+color 0F
+echo.
+echo =========================================================
+echo       [ TEAM VIDEO INTERFACE - USER AUTHENTICATION ]
+echo       NOVA ENTERPRISES ^| Team Video Technologies
+echo =========================================================
+echo.
+echo USER AUTHENTICATION REQUIRED ^| STATE YOUR USERNAME AND PASSWORD
+echo ----------------------------------------------------------------
+set /p username_input="Enter Username: "
+
+:: --- Define Users and Passwords ---
+:: User: Nintendo64, Password: legendoflegends
+:: User: Blox_Gamer, Password: Iron Man <--- NEW USER DEFINITION
+
+if /i "%username_input%"=="Nintendo64" (
+    set /p password_input="Enter Password (THIS IS BUGGY | IF IT SAYS ACCESS DENIED IF YOUR PASSWORD IS CORRECT TRY ENTERING YOUR PASSWORD FASTER): "
+    if "%password_input%"=="legendoflegends" (
+        :: Correct password for Nintendo64
+        cls
+        color 0A
+        echo.
+        echo =========================================================
+        echo                    ACCESS GRANTED
+        echo =========================================================
+        echo.
+        timeout /t 1 >nul
+        cls
+        timeout /t 4 >nul
+        goto login_success
+    ) else (
+        :: Wrong password for Nintendo64
+        color 0C
+        cls
+        echo.
+        echo =========================================================
+        echo                     ACCESS DENIED
+        echo =========================================================
+        echo.
+        timeout /t 2 >nul
+        goto login_start
+    )
+) else if /i "%username_input%"=="Blox_Gamer" (
+    set /p password_input="Enter Password (THIS IS BUGGY | IF IT SAYS ACCESS DENIED IF YOUR PASSWORD IS CORRECT TRY ENTERING YOUR PASSWORD FASTER): "
+    if "%password_input%"=="Ironman" (
+        :: Correct password for Blox_Gamer
+        cls
+        color 0A
+        echo.
+        echo =========================================================
+        echo                    ACCESS GRANTED
+        echo =========================================================
+        echo.
+        timeout /t 1 >nul
+        cls
+        timeout /t 4 >nul
+        goto login_success
+    ) else (
+        :: Wrong password for Blox_Gamer
+        color 0C
+        cls
+        echo.
+        echo =========================================================
+        echo                     ACCESS DENIED
+        echo =========================================================
+        echo.
+        timeout /t 2 >nul
+        goto login_start
+    )
+) else ( REM <--- This 'else' catches any username not found in the above 'if' or 'else if' blocks
+    :: Username not found
+    color 0C
+    cls
+    echo.
+    echo =========================================================
+    echo                   USER DOES NOT EXIST
+    echo =========================================================
+    echo.
+    timeout /t 3 >nul
+    goto login_start
+)
+
+:login_success
+:: === LOGIN SYSTEM ENDS HERE ===
+
 echo Initializing The Interface...
-ping localhost -n 4 >nul
-echo Connecting to NOVA mainframe...
 ping localhost -n 4 >nul
 echo Loading core modules...
 ping localhost -n 3 >nul
 echo Loading Interface...
 ping localhost -n 4 >nul
-echo Booting up N.O.V.A...
 ping localhost -n 3 >nul
 echo Enabling Interface System...
 ping localhost -n 6 >nul
@@ -36,23 +122,6 @@ for /L %%i in (1,1,30) do (
 
 timeout /t 2 >nul
 cls
-color CF
-echo.
-echo ==========================================================
-echo    NOTE: CHECK DAILY UPDATES ON OUR APP BELOW           
-echo    https://sites.google.com/view/team-video/whats-new?  
-echo ==========================================================
-echo.
-echo YOUR VERSION: 1.9.4
-echo PLEASE NOTE:
-echo Remember to keep the interface up to date. To update:
-echo - Delete this version
-echo - Download the latest version from the site
-echo - Follow the steps from the Google Docs link used to install
-echo.
-echo Press ENTER KEY to start the terminal...
-pause >nul
-cls
 color 0A
 echo Finalizing startup...
 ping localhost -n 6 >nul
@@ -61,54 +130,57 @@ cls
 color 0A
 :: Fancy Text Header
 echo =========================================================
-echo         [ TEAM VIDEO INTERFACE - 1.9.4 BETA INPROVED ]
-echo        NOVA ENTERPRISES ^| Team Video Technologies  
+echo           [ TEAM VIDEO INTERFACE - 1.9.4 BETA INPROVED ]
+echo         NOVA ENTERPRISES ^| Team Video Technologies
 echo =========================================================
 color 06
 echo.
-echo Welcome! You can execute the following orders or talk with our AI N.O.V.A.:
+echo Welcome! You can execute the following orders or talk with our AI N.O.V.A:
 echo ----------------------------------------------------
-echo What you can ask it:
-echo 1. What is your name?
-echo 2. What is the weather?
-echo 3. What is the time?
-echo 4. What can I do here?
-echo 5. Why is this on my device?
-echo 6. Are you really AI?
-echo 7. Im bored.got ideas?
-echo 8. What is my location?
-echo 9. What do i have on my schedule?
-echo 10. Who am i logged in as in this interface?
-echo 11. What's the Temperature outside? - COMING SOON
-echo -------------------------------------------------------------------------------------------
 echo What Do the Orders execute:
-echo 1. Order 66 - Log's you out of the user you're in. (DISABLED)
-echo 2. Order 32 - Opens Minecraft 1.8.8
-echo 3. Order 99 - Opens Roblox
-echo 4. Order 100 - Opens GenAI Course - (IN PROGRESS)
-echo 5. Order 56 - Opens Fortnite (Device doesn't support the game. Disabled.)
-echo 6. Order 50 - Opens WhatsApp
-echo 7. Open Company App - Opens Our Main Company App (Google Sites)
+echo Order 66 - Log's you out of the user you're in. (DISABLED)
+echo Order 32 - Opens Minecraft 1.8.8
+echo Order 99 - Opens Roblox
+echo Order 100 - Opens A GenAI Course - (IN PROGRESS)
+echo Order 56 - Opens Fortnite (Disabled Because Fortnite's Game Location may be diffrent in your computer compared to the orignal script inside the Interface.)
+echo Order 50 - Opens WhatsApp
+echo Open Company App - Opens Our Main Company App (Google Sites)
 echo This is still a work in progress.Things are expected to changes and bugs will be present
-echo LAST UPDATED ON: 23rd April 2025
 echo -------------------------------------------------------------------------------------------
+echo Due to unknown bug's,the AI has been vaulted.
 timeout /t 5 >nul
 
 :loop
 set /p command="> Team Video Technologies | Please Enter an Order or Ask a Question: "
 
-if /i "%command%"=="%appdata%" (
-    start "" "%appdata%"
-    exit
-)
+:: Restricted Command: Whatsapp
 if /i "%command%"=="Whatsapp" (
-    start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://web.whatsapp.com/"
-    exit
+    if /i "%username_input%"=="Nintendo64" (
+        start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://web.whatsapp.com/"
+        exit
+    ) else if /i "%username_input%"=="Blox_Gamer" (
+        start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://web.whatsapp.com/"
+        exit
+    ) else (
+        echo [ACCESS DENIED]: This command is restricted.
+        timeout /t 2 >nul
+        goto loop
+    )
 )
 
+:: Restricted Command: Order 32 (Minecraft)
 if /i "%command%"=="Order 32" (
-    start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://eaglercraft.me/"
-    exit
+    if /i "%username_input%"=="Nintendo64" (
+        start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://eaglercraft.me/"
+        exit
+    ) else if /i "%username_input%"=="Blox_Gamer" (
+        start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://eaglercraft.me/"
+        exit
+    ) else (
+        echo [ACCESS DENIED]: This command is restricted.
+        timeout /t 2 >nul
+        goto loop
+    )
 )
 
 if /i "%command%"=="Order 87" (
@@ -149,78 +221,15 @@ if /i "%command%"=="shutdown" (
 if /i "%command%"=="Order 100" (
     echo That Order is currently being worked on. Come back later to see if it's been added.
     timeout /t 2 >nul
-    goto loop    
+    goto loop
 )
 
 if /i "%command%"=="Order 56" (
     echo That Order is Disabled by default. It can no longer be executed since April 8th, 2025.
     timeout /t 2 >nul
-    goto loop    
-)
-
-:: Q&A Responses
-if /i "%command%"=="What is your name?" (
-    echo I am N.O.V.A = Neural Operational Virtual Assistant, the AI Assistant helping and powering Team Video Technologies, or TVT for short.
-    timeout /t 2 >nul
-    goto loop
-)
-
-if /i "%command%"=="What is the weather?" (
-    echo The current weather is sunny with a slight breeze.
-    timeout /t 2 >nul
-    goto loop
-)
-
-if /i "%command%"=="What is the time?" (
-    echo The current time is %time%..
-    timeout /t 2 >nul
-    goto loop
-)
-
-if /i "%command%"=="Why is this on my device?" (
-    echo This is on your device for a reason. Check the file on your desktop screen labeled: "Team Video Files" in case it isn't there.then you must have downloaded it yourself and forgot.
-    timeout /t 2 >nul
-    goto loop
-)
-
-if /i "%command%"=="Are you really AI?" (
-    echo I'm not truely AI.Im Just a piece of code designed to answer specific questions from my coding.
-    timeout /t 2 >nul
-    goto loop
-)
-
-if /i "%command%"=="What can I do here?" (
-    echo You can execute orders or ask questions to interact with the interface.
-    timeout /t 2 >nul
-    goto loop
-)
-
-if /i "%command%"=="Im bored.got ideas?" (
-    echo You can play Roblox, Minecraft, or just watch anime.
-    echo If you're into anime though, I recommend "Alya Sometimes Hides Her Feelings in Russian". ratings show its a nice series to watch.In case you did though,Season 2 is in the works and is worth the wait according to the fan's.
-    timeout /t 3 >nul
-    goto loop
-)
-
-if /i "%command%"=="What is my location?" (
-    echo I cant tell or know your location due to security reasons.
-    echo Your location is your private information,and we here at Team Video dont take your information like that and take pride in your security and personal space.
-    timeout /t 3 >nul
-    goto loop
-)
-
-if /i "%command%"=="What do i have on my schedule?" (
-    echo I Don't have access to that.
-    timeout /t 3 >nul
-    goto loop
-)
-
-if /i "%command%"=="Who am i logged in as in this interface?" (
-    echo You are logged in as: %username%
-    timeout /t 3 >nul
     goto loop
 )
 
 
-echo [ERROR 145]: Unrecognized Order or Question. Please try again.
+echo [ERROR 145]: Unrecognized Order. Please try again.
 goto loop
